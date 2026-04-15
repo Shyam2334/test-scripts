@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
+import HomePage from './components/HomePage';
 import UserList from './components/UserList';
 import UserDetail from './components/UserDetail';
 import UserForm from './components/UserForm';
@@ -12,13 +13,15 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <main className="app-content">
+        <main className="main-content">
           <Routes>
-            <Route path="/" element={<UserList />} />
-            <Route path="/users/:id" element={<UserDetail />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/users" element={<UserList />} />
             <Route path="/users/new" element={<UserForm />} />
+            <Route path="/users/:id" element={<UserDetail />} />
             <Route path="/users/:id/edit" element={<UserForm />} />
-            <Route path="/swagger" element={<SwaggerPage />} />
+            <Route path="/api-docs" element={<SwaggerPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
       </div>
