@@ -1,22 +1,17 @@
-# FastAPI Health Check Microservice
+# FastAPI Health Check Microservice with API Discovery UI
 
-A simple Python FastAPI microservice demonstrating a basic application with a dedicated health check endpoint.
+A simple FastAPI microservice with health check endpoint and a React-based UI for discovering API endpoints.
 
 ## Features
 
-*   FastAPI application
-*   Root endpoint (`/`)
-*   Health check endpoint (`/health`)
-*   Containerization with Docker
-*   Automatic API documentation (Swagger UI/ReDoc)
-*   Unit tests with pytest
+- Health check endpoint at `/health`
+- API endpoint discovery at `/api/v1/endpoints`
+- React UI for viewing all available endpoints at `/ui`
+- CORS enabled for cross-origin requests
+- Docker support with multi-stage build
 
-## Prerequisites
+## Running Locally
 
-*   Python 3.8+
-*   pip (Python package installer)
-*   Docker (optional, for containerized deployment)
+### Backend Only
 
-## Setup and Local Run
-
-1.  **Clone the repository (if applicable) or create the project structure:**
+1. Install dependencies:
