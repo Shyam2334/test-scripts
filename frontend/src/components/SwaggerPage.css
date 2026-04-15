@@ -1,0 +1,92 @@
+.swagger-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--wf-spacing-lg);
+}
+
+.swagger-header {
+  background-color: var(--wf-white);
+  border-radius: var(--wf-border-radius-lg);
+  box-shadow: var(--wf-shadow-sm);
+  padding: var(--wf-spacing-xl);
+  margin-bottom: var(--wf-spacing-xl);
+  border-left: 4px solid var(--wf-primary-red);
+}
+
+.swagger-title {
+  font-size: var(--wf-font-size-h2);
+  color: var(--wf-text-primary);
+  margin: 0 0 var(--wf-spacing-md) 0;
+  font-weight: var(--wf-font-weight-bold);
+}
+
+.swagger-description {
+  font-size: var(--wf-font-size-base);
+  color: var(--wf-text-primary);
+  margin: 0;
+  font-weight: var(--wf-font-weight-normal);
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+.swagger-ui-wrapper {
+  background-color: var(--wf-white);
+  border-radius: var(--wf-border-radius-lg);
+  box-shadow: var(--wf-shadow-sm);
+  padding: var(--wf-spacing-lg);
+}
+
+/* Override Swagger UI styles for better visibility */
+.swagger-ui .info .title {
+  color: var(--wf-text-primary) !important;
+}
+
+.swagger-ui .info .description p,
+.swagger-ui .info .description {
+  color: var(--wf-text-primary) !important;
+  font-size: var(--wf-font-size-base) !important;
+  opacity: 0.8;
+}
+
+.swagger-ui .info a {
+  color: var(--wf-primary-red) !important;
+}
+
+.swagger-ui .info a:hover {
+  color: var(--wf-dark-red) !important;
+  text-decoration: underline;
+}
+
+/* Ensure all text in Swagger UI has proper contrast */
+.swagger-ui .opblock .opblock-summary-description,
+.swagger-ui .parameter__name,
+.swagger-ui .parameter__type,
+.swagger-ui .response-col_description,
+.swagger-ui .markdown p,
+.swagger-ui .markdown li {
+  color: var(--wf-text-primary) !important;
+}
+
+/* Fix any light gray text that might appear */
+.swagger-ui * {
+  color: inherit;
+}
+
+.swagger-ui .info .base-url {
+  color: var(--wf-text-secondary) !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .swagger-page {
+    padding: var(--wf-spacing-md);
+  }
+  
+  .swagger-header {
+    padding: var(--wf-spacing-lg);
+  }
+  
+  .swagger-title {
+    font-size: var(--wf-font-size-h3);
+  }
+}
