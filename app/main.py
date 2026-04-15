@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 
 from app.api.endpoints_discovery import router as endpoints_router
+from app.api.users import router as users_router
 
 app = FastAPI(
     title="Health Check Microservice",
@@ -25,6 +26,8 @@ app.add_middleware(
 
 # Include the endpoints discovery router
 app.include_router(endpoints_router)
+# Include the users router
+app.include_router(users_router)
 
 @app.get("/", summary="Root endpoint", tags=["General"])
 async def read_root() -> Dict[str, str]:

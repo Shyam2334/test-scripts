@@ -1,281 +1,344 @@
-.App {
-  text-align: center;
-  min-height: 100vh;
-  background-color: #f5f5f5;
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
 }
 
+/* App Container */
+.App {
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  color: #2c3e50;
+}
+
+/* Navigation */
+.app-navigation {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.app-navigation li {
+  margin-right: 30px;
+}
+
+.app-navigation a {
+  text-decoration: none;
+  color: #5a6c7d;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+.app-navigation a:hover {
+  color: #3498db;
+  background-color: #f0f4f8;
+}
+
+.app-navigation li.active a {
+  color: #3498db;
+  background-color: #e3f2fd;
+}
+
+/* Headers */
 .App-header {
-  background-color: #282c34;
-  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  padding: 60px 20px;
+  text-align: center;
 }
 
 .App-header h1 {
-  margin: 0;
+  margin: 0 0 10px 0;
   font-size: 2.5rem;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .subtitle {
-  margin: 0.5rem 0 0 0;
+  margin: 0;
   font-size: 1.1rem;
-  opacity: 0.8;
+  opacity: 0.9;
+  font-weight: 400;
 }
 
+/* Main Content */
 .App-main {
-  padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Loading and Error States */
+.loading, .error {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
 }
 
 .loading {
-  padding: 2rem;
-  font-size: 1.2rem;
-  color: #666;
+  color: #3498db;
 }
 
 .error {
-  padding: 2rem;
-  font-size: 1.2rem;
-  color: #d32f2f;
-  background-color: #ffebee;
-  border-radius: 4px;
-  margin: 1rem;
+  color: #e74c3c;
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.no-endpoints {
-  padding: 2rem;
-  font-size: 1.1rem;
-  color: #666;
-}
-
+/* Endpoints Container */
 .endpoints-container {
   display: grid;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 }
 
+/* Endpoint Card */
 .endpoint-card {
   background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 1.5rem;
-  text-align: left;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: box-shadow 0.3s ease;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .endpoint-card:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 .endpoint-path {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 }
 
 .endpoint-path code {
-  background-color: #f5f5f5;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  background-color: #f4f6f8;
+  padding: 8px 12px;
+  border-radius: 6px;
   display: inline-block;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
 .endpoint-details {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 12px;
 }
 
 .methods {
   display: flex;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .method {
-  padding: 0.25rem 0.75rem;
+  padding: 4px 12px;
   border-radius: 4px;
-  font-size: 0.875rem;
+  font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .method-get {
-  background-color: #4caf50;
+  background-color: #61affe;
   color: white;
 }
 
 .method-post {
-  background-color: #2196f3;
+  background-color: #49cc90;
   color: white;
 }
 
 .method-put {
-  background-color: #ff9800;
+  background-color: #fca130;
   color: white;
 }
 
 .method-delete {
-  background-color: #f44336;
-  color: white;
-}
-
-.method-patch {
-  background-color: #9c27b0;
+  background-color: #f93e3e;
   color: white;
 }
 
 .tags {
   display: flex;
-  gap: 0.5rem;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .tag {
   background-color: #e3f2fd;
   color: #1976d2;
-  padding: 0.25rem 0.75rem;
+  padding: 4px 10px;
   border-radius: 16px;
-  font-size: 0.875rem;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .endpoint-name {
-  color: #666;
-  font-size: 0.9rem;
+  color: #7f8c8d;
+  font-size: 14px;
   font-style: italic;
 }
 
-.app-navigation {
-  background-color: #1976d2;
-  padding: 0;
-  margin: 0;
+.no-endpoints {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 18px;
+  padding: 40px;
 }
 
-.app-navigation ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
+/* User List Styles */
+.user-list-container {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.app-navigation li {
-  margin: 0;
+.user-list-container h2 {
+  margin: 0 0 24px 0;
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
-.app-navigation a {
-  display: block;
-  padding: 1rem 2rem;
+.user-list-container.loading,
+.user-list-container.error {
+  text-align: center;
+  padding: 60px;
+}
+
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.user-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.user-card:hover {
+  border-color: #3498db;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+  transform: translateY(-2px);
+}
+
+.user-id {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #3498db;
   color: white;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
-.app-navigation a:hover {
-  background-color: #1565c0;
+.user-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 8px;
 }
 
-.app-navigation li.active a {
-  background-color: #0d47a1;
+.user-email {
+  font-size: 14px;
+  color: #7f8c8d;
+  word-break: break-word;
 }
 
+.no-users {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 16px;
+  padding: 40px;
+}
+
+/* Swagger Container */
 .swagger-container {
-  min-height: 100vh;
-  background-color: #fafafa;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .swagger-header {
-  background-color: #282c34;
-  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  padding: 40px;
   text-align: center;
 }
 
 .swagger-header h1 {
-  margin: 0;
-  font-size: 2.5rem;
-  font-weight: 600;
+  margin: 0 0 10px 0;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
-.swagger-ui {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+.swagger-container .swagger-ui {
+  padding: 20px;
 }
 
-/* Wells Fargo Header Theme */
-
-/* Update the main header background */
-.App-header,
-.swagger-header {
-  background-color: #D71E2B; /* Wells Fargo Red */
-  background-image: none; /* Remove any gradients */
-}
-
-/* Ensure text remains readable on red background */
-.App-header h1,
-.swagger-header h1 {
-  color: #FFFFFF;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
-
-/* Update subtitle text */
-.App-header .subtitle,
-.swagger-header .subtitle {
-  color: rgba(255, 255, 255, 0.9); /* Slightly less bright white for secondary text */
-}
-
-/* Update navigation to match Wells Fargo theme */
-.app-navigation {
-  background-color: #D71E2B; /* Wells Fargo Red */
-  border-bottom: 4px solid #FFCD41; /* Yellow accent border */
-}
-
-.app-navigation a {
-  color: #FFFFFF;
-  background-color: transparent;
-  border-bottom: 3px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.app-navigation a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-bottom-color: rgba(255, 205, 65, 0.5);
-}
-
-.app-navigation li.active a {
-  background-color: rgba(255, 255, 255, 0.15);
-  border-bottom-color: #FFCD41; /* Yellow accent for active tab */
-}
-
-/* Accessibility: Focus states */
-.app-navigation a:focus {
-  outline: 2px solid #FFCD41; /* Wells Fargo Yellow for focus */
-  outline-offset: 2px;
-}
-
-/* Ensure any nav-tabs follow the same pattern */
-.nav-tabs .nav-link {
-  background-color: rgba(255, 255, 255, 0.1); /* Light transparent background */
-  color: #FFFFFF; /* White text */
-  border-color: rgba(255, 255, 255, 0.2); /* Subtle border */
-  border-bottom: none; /* Remove default bottom border if present */
-}
-
-.nav-tabs .nav-link.active {
-  background-color: #FFFFFF; /* White background for active tab */
-  color: #D71E2B; /* Wells Fargo Red text for active tab */
-  border-color: #FFFFFF; /* White border for active tab */
-  border-bottom: 3px solid #FFCD41; /* Yellow accent for active tab */
-}
-
-.nav-tabs .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Slightly brighter hover state */
-  color: #FFFFFF; /* Keep text white on hover */
-}
-
-.nav-tabs .nav-link:focus {
-  outline: 2px solid #FFCD41; /* Wells Fargo Yellow for focus */
-  outline-offset: 2px;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .App-header h1 {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .endpoints-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .users-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .app-navigation ul {
+    padding: 0 10px;
+  }
+  
+  .app-navigation li {
+    margin-right: 15px;
+  }
+  
+  .app-navigation a {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
 }

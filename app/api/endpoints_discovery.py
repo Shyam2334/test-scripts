@@ -13,8 +13,8 @@ async def list_endpoints(request: Request) -> List[Dict[str, Any]]:
     app = request.app
     endpoints = []
     
-    # Only include the health check endpoint
-    allowed_paths = ["/health"]
+    # Only include the health check endpoint and users endpoint
+    allowed_paths = ["/health", "/api/users"]
     
     for route in app.routes:
         if isinstance(route, APIRoute):

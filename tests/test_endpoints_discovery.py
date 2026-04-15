@@ -16,11 +16,12 @@ def test_endpoints_discovery(client):
     
     endpoints = response.json()
     assert isinstance(endpoints, list)
-    assert len(endpoints) == 1  # Only health check endpoint should be visible
+    assert len(endpoints) == 2  # Health check and users endpoints should be visible
     
-    # Check that we only have the health endpoint
+    # Check that we have both health and users endpoints
     paths = [ep["path"] for ep in endpoints]
-    assert paths == ["/health"]
+    assert "/health" in paths
+    assert "/api/users" in paths
     
     # Check endpoint structure
     for endpoint in endpoints:
@@ -49,19 +50,29 @@ def test_cors_headers(client):
 
 
 def test_only_health_endpoint_visible(client):
-    """Test that only the health check endpoint is visible in the discovery."""
+    """Test that only the allowed endpoints are visible in the discovery."""
     response = client.get("/api/v1/endpoints")
     endpoints = response.json()
     
-    # Ensure only one endpoint is returned
-    assert len(endpoints) == 1
+    # Ensure only two endpoints are returned (health and users)
+    assert len(endpoints) == 2
     
-    # Ensure it's the health endpoint
-    health_endpoint = endpoints[0]
-    assert health_endpoint["path"] == "/health"
+    # Get the paths
+    paths = [ep["path"] for ep in endpoints]
+    
+    # Ensure we have health endpoint
+    assert "/health" in paths
+    health_endpoint = next(ep for ep in endpoints if ep["path"] == "/health")
     assert "GET" in health_endpoint["methods"]
     assert health_endpoint["name"] == "health_check"
     assert "Monitoring" in health_endpoint["tags"]
+    
+    # Ensure we have users endpoint
+    assert "/api/users" in paths
+    users_endpoint = next(ep for ep in endpoints if ep["path"] == "/api/users")
+    assert "GET" in users_endpoint["methods"]
+    assert users_endpoint["name"] == "get_users"
+    assert "Users" in users_endpoint["tags"]
 
 
 def test_hidden_endpoints_not_visible(client):

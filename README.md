@@ -1,23 +1,33 @@
-# FastAPI Health Check Microservice with Interactive API Documentation
+# FastAPI Health Check Microservice
 
-A FastAPI microservice with health check endpoint and interactive API documentation using Swagger UI.
+A simple FastAPI microservice with health check endpoint, user management, and interactive API documentation.
 
 ## Features
 
 - Health check endpoint for monitoring
-- Endpoint discovery API
+- User management with mock data
 - Interactive API documentation (Swagger UI)
-- React-based frontend for viewing endpoints
-- Docker support for containerization
+- Endpoint discovery API
+- Clean, modern React UI
 
-## Prerequisites
+## API Endpoints
 
-- Python 3.11+
-- Node.js 18+
-- Docker (optional)
+### Health Check
+- **GET** `/health` - Returns the health status of the service
 
-## Installation
+### Users
+- **GET** `/api/users` - Returns a list of 10 mock users
 
-### Backend Setup
+### Discovery
+- **GET** `/api/v1/endpoints` - Returns a list of available API endpoints
 
-1. Create a virtual environment:
+### Documentation
+- **GET** `/docs` - Interactive API documentation (Swagger UI)
+- **GET** `/redoc` - Alternative API documentation (ReDoc)
+- **GET** `/openapi.json` - OpenAPI schema
+
+## Running the Application
+
+### Backend (FastAPI)
+
+1. Install dependencies:

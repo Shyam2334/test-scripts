@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import SwaggerPage from './components/SwaggerPage';
+import UserList from './components/UserList';
 import './App.css';
 
 function EndpointsList() {
@@ -85,6 +86,20 @@ function EndpointsList() {
   );
 }
 
+function UsersPage() {
+  return (
+    <>
+      <header className="App-header">
+        <h1>User Management</h1>
+        <p className="subtitle">View and manage application users</p>
+      </header>
+      <main className="App-main">
+        <UserList />
+      </main>
+    </>
+  );
+}
+
 function Navigation() {
   const location = useLocation();
   
@@ -93,6 +108,9 @@ function Navigation() {
       <ul>
         <li className={location.pathname === '/' ? 'active' : ''}>
           <Link to="/">Endpoints List</Link>
+        </li>
+        <li className={location.pathname === '/users' ? 'active' : ''}>
+          <Link to="/users">Users</Link>
         </li>
         <li className={location.pathname === '/api-docs' ? 'active' : ''}>
           <Link to="/api-docs">Interactive API Docs</Link>
@@ -109,6 +127,7 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<EndpointsList />} />
+          <Route path="/users" element={<UsersPage />} />
           <Route path="/api-docs" element={<SwaggerPage />} />
         </Routes>
       </div>
