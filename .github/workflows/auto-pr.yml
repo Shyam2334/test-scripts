@@ -1,0 +1,58 @@
+name: Auto Create PR
+
+on:
+  push:
+    branches:
+      - 'feature/*'
+      - 'bugfix/*'
+      - 'hotfix/*'
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Extract branch info
+        id: branch_info
+        run: |
+          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          
+          # Extract task number if present
+          if [[ $BRANCH_NAME =~ task-([0-9]+) ]]; then
+            TASK_NUMBER="${BASH_REMATCH[1]}"
+            echo "task_number=$TASK_NUMBER" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ steps.branch_info.outputs.branch }}
+          base: main
+          title: |
+            [FEATURE] ${{ steps.branch_info.outputs.task_number && format('Task #{0}: ', steps.branch_info.outputs.task_number) || '' }}${{ github.event.head_commit.message }}
+          body: |
+            ## Description
+            This PR was automatically created from branch `${{ steps.branch_info.outputs.branch }}`.
+            
+            ### Changes
+            ${{ github.event.head_commit.message }}
+            
+            ### Related Issues
+            ${{ steps.branch_info.outputs.task_number && format('Closes #{0}', steps.branch_info.outputs.task_number) || 'No related issues' }}
+            
+            ### Checklist
+            - [ ] Code follows project style guidelines
+            - [ ] Tests have been added/updated
+            - [ ] Documentation has been updated
+            - [ ] All tests pass
+          labels: |
+            automated-pr
+            needs-review
