@@ -1,20 +1,35 @@
-# Use an official Python runtime as a parent image
-FROM python:3.10-slim-buster
+# Stage 1: Build React Frontend
+FROM node:18-alpine AS frontend-builder
 
-# Set the working directory in the container
+WORKDIR /app/frontend
+
+# Copy package files
+COPY frontend/package*.json ./
+RUN npm ci --only=production
+
+# Copy frontend source
+COPY frontend/ ./
+
+# Build the React app
+RUN npm run build
+
+# Stage 2: Python Backend
+FROM python:3.9-slim-buster
+
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY ./requirements.txt /app/requirements.txt
-
-# Install any needed packages specified in requirements.txt
+# Install Python dependencies
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
-COPY ./app /app/app
+# Copy backend source code
+COPY app/ ./app/
 
-# Expose the port the app runs on
+# Copy built frontend from previous stage
+COPY --from=frontend-builder /app/frontend/build ./app/static
+
+# Expose port
 EXPOSE 8000
 
-# Run the application using Uvicorn
+# Run the application
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
