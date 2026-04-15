@@ -13,10 +13,13 @@ async def list_endpoints(request: Request) -> List[Dict[str, Any]]:
     app = request.app
     endpoints = []
     
+    # Only include the health check endpoint
+    allowed_paths = ["/health"]
+    
     for route in app.routes:
         if isinstance(route, APIRoute):
-            # Filter out internal routes
-            if not any(skip in route.path for skip in ["/openapi.json", "/docs", "/redoc"]):
+            # Only include explicitly allowed routes
+            if route.path in allowed_paths:
                 endpoints.append({
                     "path": route.path,
                     "methods": list(route.methods),
