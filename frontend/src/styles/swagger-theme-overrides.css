@@ -1,0 +1,255 @@
+/* Wells Fargo Theme Overrides for Swagger UI */
+
+/* Top Bar */
+.swagger-ui .topbar {
+  background-color: var(--wf-dark-grey);
+  padding: 10px 0;
+}
+
+.swagger-ui .topbar .download-url-wrapper {
+  display: none;
+}
+
+/* Main Container */
+.swagger-ui {
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+/* Info Section */
+.swagger-ui .info {
+  margin: 20px 0;
+}
+
+.swagger-ui .info .title {
+  color: var(--primary-color);
+  font-family: var(--font-family);
+}
+
+.swagger-ui .info .description {
+  font-family: var(--font-family);
+  color: var(--text-color);
+}
+
+/* Operation Tags */
+.swagger-ui .opblock-tag {
+  color: var(--primary-color);
+  font-family: var(--font-family);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.swagger-ui .opblock-tag:hover {
+  background-color: var(--wf-light-grey);
+}
+
+/* Operation Blocks */
+.swagger-ui .opblock {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px var(--card-shadow);
+  margin-bottom: 15px;
+}
+
+.swagger-ui .opblock .opblock-summary {
+  border: none;
+  background-color: var(--wf-white);
+}
+
+.swagger-ui .opblock .opblock-summary:hover {
+  background-color: var(--wf-light-grey);
+}
+
+/* HTTP Method Labels */
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+  background-color: #E3F2FD;
+  color: #1976D2;
+}
+
+.swagger-ui .opblock.opblock-post .opblock-summary-method {
+  background-color: #E8F5E9;
+  color: #388E3C;
+}
+
+.swagger-ui .opblock.opblock-put .opblock-summary-method {
+  background-color: #FFF3E0;
+  color: #F57C00;
+}
+
+.swagger-ui .opblock.opblock-delete .opblock-summary-method {
+  background-color: #FFEBEE;
+  color: #D32F2F;
+}
+
+/* Buttons */
+.swagger-ui .btn {
+  font-family: var(--font-family);
+  border-radius: var(--border-radius);
+  font-weight: 500;
+}
+
+.swagger-ui .btn-primary {
+  background-color: var(--primary-color);
+  color: var(--wf-white);
+  border: none;
+}
+
+.swagger-ui .btn-primary:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+.swagger-ui .btn.execute {
+  background-color: var(--primary-color);
+  color: var(--wf-white);
+  border: none;
+}
+
+.swagger-ui .btn.execute:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+.swagger-ui .btn.cancel {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border: none;
+}
+
+.swagger-ui .btn.cancel:hover {
+  background-color: var(--btn-secondary-hover);
+}
+
+/* Authorization Button */
+.swagger-ui .btn.authorize {
+  background-color: var(--primary-color);
+  color: var(--wf-white);
+  border: none;
+}
+
+.swagger-ui .btn.authorize:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+.swagger-ui .btn.authorize.locked {
+  background-color: var(--success-color);
+}
+
+/* Parameters */
+.swagger-ui .parameters-col_description {
+  color: var(--text-color);
+}
+
+.swagger-ui .parameter__name {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.swagger-ui .parameter__type {
+  color: var(--text-light);
+}
+
+/* Response Section */
+.swagger-ui .responses-wrapper .opblock-section-header {
+  background-color: var(--wf-light-grey);
+  color: var(--text-color);
+}
+
+.swagger-ui .response-col_status {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.swagger-ui .response-col_description {
+  color: var(--text-light);
+}
+
+/* Code Blocks */
+.swagger-ui .highlight-code {
+  background-color: var(--wf-light-grey);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+.swagger-ui .highlight-code pre {
+  color: var(--text-color);
+  font-family: 'Courier New', monospace;
+}
+
+/* Model Section */
+.swagger-ui .model-container {
+  background-color: var(--wf-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+.swagger-ui .model-title {
+  color: var(--primary-color);
+  font-family: var(--font-family);
+}
+
+/* Tables */
+.swagger-ui table {
+  font-family: var(--font-family);
+}
+
+.swagger-ui table thead tr th {
+  background-color: var(--wf-light-grey);
+  color: var(--text-color);
+  font-weight: 600;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.swagger-ui table tbody tr td {
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+/* Links */
+.swagger-ui a {
+  color: var(--primary-color);
+}
+
+.swagger-ui a:hover {
+  color: var(--btn-primary-hover);
+}
+
+/* Select Dropdowns */
+.swagger-ui select {
+  font-family: var(--font-family);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--wf-white);
+  color: var(--text-color);
+}
+
+/* Input Fields */
+.swagger-ui input[type=text],
+.swagger-ui input[type=password],
+.swagger-ui input[type=email],
+.swagger-ui input[type=file],
+.swagger-ui textarea {
+  font-family: var(--font-family);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+}
+
+.swagger-ui input[type=text]:focus,
+.swagger-ui input[type=password]:focus,
+.swagger-ui input[type=email]:focus,
+.swagger-ui textarea:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(215, 30, 43, 0.1);
+}
+
+/* Loading */
+.swagger-ui .loading-container {
+  color: var(--text-light);
+}
+
+/* Errors */
+.swagger-ui .errors-wrapper {
+  background-color: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+  border-radius: var(--border-radius);
+  color: var(--error-color);
+}
