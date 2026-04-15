@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
+import SwaggerPage from './components/SwaggerPage';
 import './App.css';
 
-function App() {
+function EndpointsList() {
   const [endpoints, setEndpoints] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,22 +29,18 @@ function App() {
 
   if (loading) {
     return (
-      <div className="App">
-        <div className="loading">Loading endpoints...</div>
-      </div>
+      <div className="loading">Loading endpoints...</div>
     );
   }
 
   if (error) {
     return (
-      <div className="App">
-        <div className="error">Error: {error}</div>
-      </div>
+      <div className="error">Error: {error}</div>
     );
   }
 
   return (
-    <div className="App">
+    <>
       <header className="App-header">
         <h1>API Endpoints</h1>
         <p className="subtitle">Available endpoints in this application</p>
@@ -83,7 +81,38 @@ function App() {
           </div>
         )}
       </main>
-    </div>
+    </>
+  );
+}
+
+function Navigation() {
+  const location = useLocation();
+  
+  return (
+    <nav className="app-navigation">
+      <ul>
+        <li className={location.pathname === '/' ? 'active' : ''}>
+          <Link to="/">Endpoints List</Link>
+        </li>
+        <li className={location.pathname === '/api-docs' ? 'active' : ''}>
+          <Link to="/api-docs">Interactive API Docs</Link>
+        </li>
+      </ul>
+    </nav>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<EndpointsList />} />
+          <Route path="/api-docs" element={<SwaggerPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
