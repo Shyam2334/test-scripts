@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import userService from '../services/userService';
+import { useNavigate, useParams } from 'react-router-dom';
+import './UserForm.css';
 
-function UserForm() {
-  const { id } = useParams();
+const UserForm = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const isEdit = !!id;
-  
+
   const [formData, setFormData] = useState({
     name: '',
     email: ''
   });
+  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [validationErrors, setValidationErrors] = useState({});
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   useEffect(() => {
     if (isEdit) {
@@ -22,37 +22,43 @@ function UserForm() {
   }, [id]);
 
   const fetchUser = async () => {
+    setLoading(true);
     try {
-      setLoading(true);
-      const user = await userService.getUserById(id);
-      setFormData({
-        name: user.name,
-        email: user.email
-      });
+      const response = await fetch(`/api/users/${id}`);
+      if (response.ok) {
+        const user = await response.json();
+        setFormData({
+          name: user.name,
+          email: user.email
+        });
+      } else {
+        throw new Error('User not found');
+      }
     } catch (error) {
-      setError(`Failed to load user: ${error.message}`);
+      console.error('Error fetching user:', error);
+      navigate('/');
     } finally {
       setLoading(false);
     }
   };
 
   const validateForm = () => {
-    const errors = {};
+    const newErrors = {};
     
     if (!formData.name.trim()) {
-      errors.name = 'Name is required';
-    } else if (formData.name.trim().length > 100) {
-      errors.name = 'Name must be less than 100 characters';
+      newErrors.name = 'Name is required';
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = 'Name must be at least 2 characters';
     }
     
     if (!formData.email.trim()) {
-      errors.email = 'Email is required';
+      newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = 'Invalid email format';
+      newErrors.email = 'Please enter a valid email address';
     }
     
-    setValidationErrors(errors);
-    return Object.keys(errors).length === 0;
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleChange = (e) => {
@@ -61,9 +67,10 @@ function UserForm() {
       ...prev,
       [name]: value
     }));
-    // Clear validation error when user starts typing
-    if (validationErrors[name]) {
-      setValidationErrors(prev => ({
+    
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
         ...prev,
         [name]: ''
       }));
@@ -77,101 +84,125 @@ function UserForm() {
       return;
     }
     
-    setLoading(true);
-    setError(null);
+    setSubmitLoading(true);
     
     try {
-      if (isEdit) {
-        await userService.updateUser(id, formData);
+      const url = isEdit ? `/api/users/${id}` : '/api/users';
+      const method = isEdit ? 'PUT' : 'POST';
+      
+      const response = await fetch(url, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        navigate('/');
       } else {
-        await userService.createUser(formData);
+        throw new Error('Failed to save user');
       }
-      navigate('/users');
     } catch (error) {
-      setError(error.message);
+      console.error('Error saving user:', error);
+      setErrors({ submit: 'Failed to save user. Please try again.' });
     } finally {
-      setLoading(false);
+      setSubmitLoading(false);
     }
   };
 
-  const handleCancel = () => {
-    navigate('/users');
-  };
-
-  if (loading && isEdit) {
+  if (loading) {
     return (
       <div className="user-form-container">
-        <div className="loading">Loading user data...</div>
+        <div className="form-loading">
+          <div className="loading-spinner"></div>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="user-form-container">
-      <header className="App-header">
-        <h1>{isEdit ? 'Edit User' : 'Create New User'}</h1>
-        <p className="subtitle">{isEdit ? 'Update user information' : 'Add a new user to the system'}</p>
-      </header>
-      
-      <main className="App-main">
-        <form onSubmit={handleSubmit} className="user-form">
-          {error && (
-            <div className="error-message">{error}</div>
+      <div className="user-form-card">
+        <div className="user-form-header">
+          <h2>{isEdit ? 'Edit User' : 'Create New User'}</h2>
+        </div>
+        
+        <div className="user-form-body">
+          {errors.submit && (
+            <div className="form-error" style={{ marginBottom: '20px' }}>
+              <span className="form-error-icon">⚠️</span>
+              {errors.submit}
+            </div>
           )}
           
-          <div className="form-group">
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className={validationErrors.name ? 'error' : ''}
-              disabled={loading}
-            />
-            {validationErrors.name && (
-              <span className="field-error">{validationErrors.name}</span>
-            )}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={validationErrors.email ? 'error' : ''}
-              disabled={loading}
-            />
-            {validationErrors.email && (
-              <span className="field-error">{validationErrors.email}</span>
-            )}
-          </div>
-          
-          <div className="form-actions">
-            <button 
-              type="submit" 
-              className="btn btn-primary"
-              disabled={loading}
-            >
-              {loading ? 'Saving...' : (isEdit ? 'Update User' : 'Create User')}
-            </button>
-            <button 
-              type="button" 
-              onClick={handleCancel}
-              className="btn btn-secondary"
-              disabled={loading}
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      </main>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name" className="form-label form-label-required">
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className={`form-input ${errors.name ? 'error' : ''}`}
+                placeholder="Enter full name"
+                disabled={submitLoading}
+              />
+              {errors.name && (
+                <div className="form-error">
+                  <span className="form-error-icon">⚠️</span>
+                  {errors.name}
+                </div>
+              )}
+            </div>
+            
+            <div className="form-group">
+              <label htmlFor="email" className="form-label form-label-required">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className={`form-input ${errors.email ? 'error' : ''}`}
+                placeholder="Enter email address"
+                disabled={submitLoading}
+              />
+              {errors.email && (
+                <div className="form-error">
+                  <span className="form-error-icon">⚠️</span>
+                  {errors.email}
+                </div>
+              )}
+            </div>
+            
+            <div className="form-actions">
+              <button
+                type="button"
+                onClick={() => navigate('/')}
+                className="btn btn-secondary"
+                disabled={submitLoading}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={submitLoading}
+              >
+                {submitLoading ? 'Saving...' : (isEdit ? 'Update User' : 'Create User')}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default UserForm;

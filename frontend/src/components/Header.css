@@ -1,0 +1,112 @@
+.wf-header {
+  background-color: var(--wf-white);
+  box-shadow: var(--wf-shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: var(--wf-z-header);
+  border-bottom: 3px solid var(--wf-primary-red);
+}
+
+.wf-header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--wf-spacing-md) var(--wf-spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wf-header-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--wf-spacing-md);
+}
+
+.wf-header-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.wf-header-logo {
+  height: 40px;
+  width: auto;
+}
+
+.wf-header-title h1 {
+  font-size: var(--wf-font-size-h3);
+  margin: 0;
+  color: var(--wf-text-primary);
+  font-weight: var(--wf-font-weight-bold);
+}
+
+.wf-header-subtitle {
+  font-size: var(--wf-font-size-small);
+  color: var(--wf-text-secondary);
+  margin: 0;
+  font-weight: var(--wf-font-weight-normal);
+}
+
+.wf-header-nav {
+  display: flex;
+  gap: var(--wf-spacing-lg);
+  align-items: center;
+}
+
+.wf-header-nav-link {
+  color: var(--wf-text-primary);
+  text-decoration: none;
+  font-weight: var(--wf-font-weight-medium);
+  padding: var(--wf-spacing-sm) var(--wf-spacing-md);
+  border-radius: var(--wf-border-radius);
+  transition: all var(--wf-transition-fast);
+  position: relative;
+}
+
+.wf-header-nav-link:hover {
+  color: var(--wf-primary-red);
+  background-color: rgba(215, 30, 43, 0.05);
+  text-decoration: none;
+}
+
+.wf-header-nav-link.active {
+  color: var(--wf-primary-red);
+  background-color: rgba(215, 30, 43, 0.1);
+}
+
+.wf-header-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--wf-secondary-gold);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .wf-header-container {
+    flex-direction: column;
+    gap: var(--wf-spacing-md);
+    padding: var(--wf-spacing-sm) var(--wf-spacing-md);
+  }
+  
+  .wf-header-brand {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .wf-header-nav {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .wf-header-title h1 {
+    font-size: var(--wf-font-size-large);
+  }
+  
+  .wf-header-logo {
+    height: 32px;
+  }
+}
