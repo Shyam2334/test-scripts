@@ -1,22 +1,16 @@
 # FastAPI Health Check Microservice
 
-A simple Python FastAPI microservice demonstrating a basic application with a dedicated health check endpoint.
+A simple FastAPI microservice with health check endpoint, proper logging, configuration management, and comprehensive testing.
 
 ## Features
 
-*   FastAPI application
-*   Root endpoint (`/`)
-*   Health check endpoint (`/health`)
-*   Containerization with Docker
-*   Automatic API documentation (Swagger UI/ReDoc)
-*   Unit tests with pytest
+- ✅ Health check endpoint for monitoring
+- ✅ Structured logging with file and console output
+- ✅ Configuration management with environment variables
+- ✅ Comprehensive test coverage (unit and integration tests)
+- ✅ Proper error handling
+- ✅ OpenAPI documentation
 
-## Prerequisites
+## Installation
 
-*   Python 3.8+
-*   pip (Python package installer)
-*   Docker (optional, for containerized deployment)
-
-## Setup and Local Run
-
-1.  **Clone the repository (if applicable) or create the project structure:**
+1. Clone the repository:
