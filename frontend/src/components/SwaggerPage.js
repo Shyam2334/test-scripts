@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SwaggerUI from 'swagger-ui-react';
 import 'swagger-ui-react/swagger-ui.css';
+import '../styles/swagger-theme-overrides.css';
 
 const SwaggerPage = () => {
   const [loading, setLoading] = useState(true);

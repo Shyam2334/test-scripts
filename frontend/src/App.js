@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import SwaggerPage from './components/SwaggerPage';
 import UserList from './components/UserList';
+import wellsFargoLogo from './assets/images/wells-fargo-logo.svg';
 import './App.css';
 
 function EndpointsList() {
@@ -43,8 +44,13 @@ function EndpointsList() {
   return (
     <>
       <header className="App-header">
-        <h1>API Endpoints</h1>
-        <p className="subtitle">Available endpoints in this application</p>
+        <div className="header-with-logo">
+          <img src={wellsFargoLogo} alt="Wells Fargo" className="wells-fargo-logo" />
+          <div className="header-content">
+            <h1>API Endpoints</h1>
+            <p className="subtitle">Available endpoints in this application</p>
+          </div>
+        </div>
       </header>
       <main className="App-main">
         {endpoints.length === 0 ? (
@@ -90,8 +96,13 @@ function UsersPage() {
   return (
     <>
       <header className="App-header">
-        <h1>User Management</h1>
-        <p className="subtitle">View and manage application users</p>
+        <div className="header-with-logo">
+          <img src={wellsFargoLogo} alt="Wells Fargo" className="wells-fargo-logo" />
+          <div className="header-content">
+            <h1>User Management</h1>
+            <p className="subtitle">View and manage application users</p>
+          </div>
+        </div>
       </header>
       <main className="App-main">
         <UserList />

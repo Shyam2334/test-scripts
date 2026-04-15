@@ -20,6 +20,10 @@ async def list_endpoints(request: Request) -> List[Dict[str, Any]]:
         if isinstance(route, APIRoute):
             # Only include explicitly allowed routes
             if route.path in allowed_paths:
+                # For /api/users, only include GET method
+                if route.path == "/api/users" and "GET" not in route.methods:
+                    continue
+                    
                 endpoints.append({
                     "path": route.path,
                     "methods": list(route.methods),
