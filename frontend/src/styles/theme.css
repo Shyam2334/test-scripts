@@ -1,134 +1,54 @@
-/* Theme-specific utility classes and overrides */
+/* Theme Toggle Styles */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
 
-/* Smooth transitions for theme changes */
+.toggle-switch {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  background-color: #ccc;
+  border-radius: 12px;
+  transition: background-color 0.3s;
+}
+
+.toggle-switch.active {
+  background-color: var(--primary-color);
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch.active .toggle-slider {
+  transform: translateX(26px);
+}
+
+/* Dark Mode Specific Overrides */
+body.dark-mode {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .btn-warning {
+  color: #212529;
+}
+
+body.dark-mode .btn-warning:hover {
+  color: #212529;
+}
+
+/* Smooth transitions for theme switching */
 * {
-  transition-property: background-color, color, border-color, box-shadow;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;
-}
-
-/* Prevent transition on page load */
-.preload * {
-  transition: none !important;
-}
-
-/* Custom scrollbar for dark theme */
-.dark-theme::-webkit-scrollbar-track {
-  background: var(--background-color);
-}
-
-.dark-theme::-webkit-scrollbar-thumb {
-  background: var(--secondary-color);
-}
-
-/* Selection colors */
-::selection {
-  background-color: var(--primary-color);
-  color: var(--button-text);
-}
-
-::-moz-selection {
-  background-color: var(--primary-color);
-  color: var(--button-text);
-}
-
-/* Focus styles */
-:focus-visible {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-}
-
-/* Loading spinner colors */
-.spinner {
-  border-color: var(--border-color);
-  border-top-color: var(--primary-color);
-}
-
-/* Modal backdrop */
-.modal-backdrop {
-  background-color: var(--modal-overlay);
-}
-
-/* Tooltips */
-.tooltip {
-  background-color: var(--text-color);
-  color: var(--background-color);
-}
-
-/* Badges */
-.badge {
-  background-color: var(--primary-color);
-  color: var(--button-text);
-}
-
-.badge-secondary {
-  background-color: var(--secondary-color);
-}
-
-.badge-success {
-  background-color: var(--success-color);
-}
-
-.badge-danger {
-  background-color: var(--error-color);
-}
-
-.badge-warning {
-  background-color: var(--warning-color);
-  color: #212529;
-}
-
-.badge-info {
-  background-color: var(--info-color);
-}
-
-/* Cards */
-.card {
-  background-color: var(--card-background);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 2px 4px var(--shadow-color);
-}
-
-/* Alerts */
-.alert {
-  border: 1px solid transparent;
-  border-radius: 4px;
-  padding: 12px 20px;
-  margin-bottom: 16px;
-}
-
-.alert-success {
-  background-color: var(--success-color);
-  color: white;
-  border-color: var(--success-color);
-}
-
-.alert-danger {
-  background-color: var(--error-color);
-  color: white;
-  border-color: var(--error-color);
-}
-
-.alert-warning {
-  background-color: var(--warning-color);
-  color: #212529;
-  border-color: var(--warning-color);
-}
-
-.alert-info {
-  background-color: var(--info-color);
-  color: white;
-  border-color: var(--info-color);
-}
-
-/* Prevent FOUC (Flash of Unstyled Content) */
-body.preload {
-  visibility: hidden;
-  opacity: 0;
-}
-
-body {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
