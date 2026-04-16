@@ -1,0 +1,22 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9-]*$",
+    "color-hex-length": "long",
+    "declaration-block-no-redundant-longhand-properties": true,
+    "shorthand-property-no-redundant-values": true,
+    "declaration-no-important": true,
+    "selector-max-specificity": "0,3,0",
+    "max-nesting-depth": 3,
+    "no-duplicate-selectors": true,
+    "no-descending-specificity": true,
+    "order/properties-alphabetical-order": true,
+    "font-family-no-missing-generic-family-keyword": true,
+    "property-no-vendor-prefix": true,
+    "value-no-vendor-prefix": true,
+    "selector-no-vendor-prefix": true,
+    "media-feature-name-no-vendor-prefix": true,
+    "at-rule-no-vendor-prefix": true
+  }
+}
