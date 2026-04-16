@@ -1,12 +1,8 @@
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
-
-# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -20,52 +16,73 @@ parts/
 sdist/
 var/
 wheels/
-pip-wheel-metadata/
-share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
-
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
+.pytest_cache/
 .coverage
 .coverage.*
-.cache
-nosetests.xml
 coverage.xml
 *.cover
-*.py,cover
 .hypothesis/
-.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
 
-# Virtual environments
+# Virtual Environment
 venv/
 ENV/
 env/
-.venv
+.venv/
 
-# IDEs
-.idea/
+# IDE
 .vscode/
+.idea/
 *.swp
 *.swo
 *~
-
-# OS
 .DS_Store
-Thumbs.db
 
-# Project specific
-*.log
+# Environment variables
 .env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Frontend
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# Static files
+app/static/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Secrets and credentials
+*.pem
+*.key
+*.cert
+*.crt
+secrets/
+credentials/

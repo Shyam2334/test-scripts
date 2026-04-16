@@ -1,0 +1,70 @@
+/* Dark Mode Theme */
+body.dark {
+  /* Dark Theme Overrides */
+  --color-primary-bg: #1a1a1a;
+  --color-secondary-bg: #2c2c2c;
+  --color-text-primary: #e0e0e0;
+  --color-text-secondary: #b0b0b0;
+  --color-text-light: #ffffff;
+  --color-border: #444444;
+  --color-accent: #ff4757;
+  --color-accent-hover: #ff6b7a;
+  --color-header-bg: #2c2c2c;
+  --color-header-text: #e0e0e0;
+  --color-card-bg: #2c2c2c;
+  --color-card-shadow: rgba(0, 0, 0, 0.3);
+  --color-card-shadow-hover: rgba(0, 0, 0, 0.5);
+  --color-input-bg: #333333;
+  --color-input-border: #555555;
+  --color-input-focus: #ff4757;
+  --color-button-primary-bg: #ff4757;
+  --color-button-primary-text: #ffffff;
+  --color-button-primary-hover: #ff6b7a;
+  --color-button-secondary-bg: #333333;
+  --color-button-secondary-text: #e0e0e0;
+  --color-button-secondary-border: #555555;
+  --color-button-secondary-hover-bg: #444444;
+  --color-button-secondary-hover-border: #666666;
+  --color-success: #2ed573;
+  --color-error: #ff4757;
+  --color-warning: #ffa502;
+  --color-info: #5f9ea0;
+  --color-code-bg: #333333;
+  --color-code-text: #e0e0e0;
+  --color-link: #66b3ff;
+  --color-link-hover: #99ccff;
+  
+  /* Wells Fargo Brand Colors for Dark Mode */
+  --wf-primary-red: #ff4757;
+  --wf-dark-red: #ff6b7a;
+  --wf-light-gray: #2c2c2c;
+  --wf-dark-gray: #b0b0b0;
+  --wf-white: #1a1a1a;
+  --wf-text-primary: #e0e0e0;
+  --wf-text-secondary: #b0b0b0;
+  --wf-text-light: #ffffff;
+  --wf-border-color: #444444;
+  --wf-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --wf-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --wf-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode specific adjustments */
+body.dark .wells-fargo-logo {
+  filter: brightness(0) invert(1);
+}
+
+body.dark pre,
+body.dark code {
+  background-color: var(--color-code-bg);
+  color: var(--color-code-text);
+}
+
+body.dark .swagger-ui {
+  filter: invert(0.9) hue-rotate(180deg);
+}
+
+body.dark .swagger-ui img,
+body.dark .swagger-ui svg {
+  filter: invert(1) hue-rotate(180deg);
+}
