@@ -1,54 +1,59 @@
 :root {
-  /* Wells Fargo Brand Colors */
-  --wf-primary-red: #D71E2B;
-  --wf-secondary-gold: #FFCD41;
-  --wf-dark-red: #B51A28;
-  --wf-light-gold: #FFE8A3;
-  --wf-black: #000000;
-  --wf-white: #FFFFFF;
-  --wf-light-gray: #F7F7F7;
-  --wf-medium-gray: #E0E0E0;
-  --wf-dark-gray: #666666;
-  --wf-text-primary: #333333;
-  --wf-text-secondary: #666666;
-  --wf-text-light: #FFFFFF;
-  
-  /* Typography */
-  --wf-font-primary: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  --wf-font-size-base: 16px;
-  --wf-font-size-small: 14px;
-  --wf-font-size-large: 18px;
-  --wf-font-size-h1: 32px;
-  --wf-font-size-h2: 24px;
-  --wf-font-size-h3: 20px;
-  --wf-font-weight-normal: 400;
-  --wf-font-weight-medium: 500;
-  --wf-font-weight-bold: 700;
-  
-  /* Spacing */
-  --wf-spacing-xs: 4px;
-  --wf-spacing-sm: 8px;
-  --wf-spacing-md: 16px;
-  --wf-spacing-lg: 24px;
-  --wf-spacing-xl: 32px;
-  --wf-spacing-xxl: 48px;
-  
-  /* Border */
-  --wf-border-radius: 4px;
-  --wf-border-radius-lg: 8px;
-  --wf-border-color: #E0E0E0;
-  --wf-border-width: 1px;
-  
-  /* Shadows */
-  --wf-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --wf-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --wf-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  
-  /* Transitions */
-  --wf-transition-fast: 150ms ease-in-out;
-  --wf-transition-normal: 250ms ease-in-out;
-  
-  /* Z-index */
-  --wf-z-header: 1000;
-  --wf-z-modal: 2000;
+  /* Light Theme */
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --primary-color: #d71e2b; /* Wells Fargo red */
+  --primary-hover-color: #b91c23;
+  --secondary-color: #6c757d;
+  --border-color: #dee2e6;
+  --card-background: #f8f9fa;
+  --header-background: #ffffff;
+  --header-text-color: #333333;
+  --link-color: #d71e2b;
+  --link-hover-color: #b91c23;
+  --input-background: #ffffff;
+  --input-border: #ced4da;
+  --input-focus-border: #d71e2b;
+  --button-text: #ffffff;
+  --table-header-bg: #f8f9fa;
+  --table-border: #dee2e6;
+  --table-hover-bg: #f1f3f5;
+  --code-background: #f5f5f5;
+  --code-text: #333333;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+}
+
+.dark-theme {
+  /* Dark Theme */
+  --background-color: #1a202c;
+  --text-color: #e2e8f0;
+  --primary-color: #ff6b6b;
+  --primary-hover-color: #ff5252;
+  --secondary-color: #a0aec0;
+  --border-color: #4a5568;
+  --card-background: #2d3748;
+  --header-background: #2d3748;
+  --header-text-color: #e2e8f0;
+  --link-color: #ff6b6b;
+  --link-hover-color: #ff5252;
+  --input-background: #374151;
+  --input-border: #4a5568;
+  --input-focus-border: #ff6b6b;
+  --button-text: #ffffff;
+  --table-header-bg: #374151;
+  --table-border: #4a5568;
+  --table-hover-bg: #374151;
+  --code-background: #374151;
+  --code-text: #e2e8f0;
+  --success-color: #48bb78;
+  --error-color: #f56565;
+  --warning-color: #ed8936;
+  --info-color: #4299e1;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --modal-overlay: rgba(0, 0, 0, 0.7);
 }

@@ -1,49 +1,39 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 import wellsFargoLogo from '../assets/images/wells-fargo-logo.svg';
+import { useTheme } from '../context/ThemeContext';
 
-const Header = () => {
-  const location = useLocation();
-  
-  const isActive = (path) => {
-    return location.pathname === path;
-  };
+function Header() {
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="wf-header">
-      <div className="wf-header-container">
-        <div className="wf-header-brand">
-          <Link to="/" className="wf-header-logo-link">
-            <img 
-              src={wellsFargoLogo} 
-              alt="Wells Fargo" 
-              className="wf-header-logo"
-            />
-          </Link>
-          <div className="wf-header-title">
-            <h1>User Management System</h1>
-            <p className="wf-header-subtitle">Secure. Simple. Reliable.</p>
-          </div>
+    <header className="header">
+      <div className="header-content">
+        <div className="header-left">
+          <img src={wellsFargoLogo} alt="Wells Fargo Logo" className="header-logo" />
+          <h1 className="header-title">API Explorer</h1>
         </div>
-        
-        <nav className="wf-header-nav">
-          <Link 
-            to="/" 
-            className={`wf-header-nav-link ${isActive('/') ? 'active' : ''}`}
-          >
-            Users
-          </Link>
-          <Link 
-            to="/swagger" 
-            className={`wf-header-nav-link ${isActive('/swagger') ? 'active' : ''}`}
-          >
-            API Documentation
-          </Link>
-        </nav>
+        <button
+          className="theme-toggle-button"
+          onClick={toggleTheme}
+          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+          title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+        >
+          {theme === 'light' ? (
+            <>
+              <span className="theme-icon">🌙</span>
+              <span className="theme-text">Dark Mode</span>
+            </>
+          ) : (
+            <>
+              <span className="theme-icon">☀️</span>
+              <span className="theme-text">Light Mode</span>
+            </>
+          )}
+        </button>
       </div>
     </header>
   );
-};
+}
 
 export default Header;
