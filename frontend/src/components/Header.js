@@ -1,39 +1,44 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
-import wellsFargoLogo from '../assets/images/wells-fargo-logo.svg';
 import { useTheme } from '../context/ThemeContext';
+import wellsFargoLogo from '../assets/images/wells-fargo-logo.svg';
 
-function Header() {
+const Header = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="header">
       <div className="header-content">
         <div className="header-left">
-          <img src={wellsFargoLogo} alt="Wells Fargo Logo" className="header-logo" />
-          <h1 className="header-title">API Explorer</h1>
+          <img 
+            src={wellsFargoLogo} 
+            alt="Wells Fargo" 
+            className="header-logo"
+          />
+          <h1 className="header-title">User Management System</h1>
         </div>
-        <button
+        
+        <nav className="header-nav">
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/users" className="nav-link">Users</Link>
+        </nav>
+        
+        <button 
           className="theme-toggle-button"
           onClick={toggleTheme}
           aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-          title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
         >
-          {theme === 'light' ? (
-            <>
-              <span className="theme-icon">🌙</span>
-              <span className="theme-text">Dark Mode</span>
-            </>
-          ) : (
-            <>
-              <span className="theme-icon">☀️</span>
-              <span className="theme-text">Light Mode</span>
-            </>
-          )}
+          <span className="theme-icon">
+            {theme === 'light' ? '🌙' : '☀️'}
+          </span>
+          <span className="theme-text">
+            {theme === 'light' ? 'Dark' : 'Light'} Mode
+          </span>
         </button>
       </div>
     </header>
   );
-}
+};
 
 export default Header;

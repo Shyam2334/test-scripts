@@ -1,61 +1,181 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  min-height: 100vh;
+}
+
+/* Main App Container */
 .App {
   min-height: 100vh;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.nav-menu {
-  background-color: var(--card-background);
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border-color);
   display: flex;
-  justify-content: center;
-  gap: 30px;
+  flex-direction: column;
+}
+
+/* Main Content Container */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  flex: 1;
+}
+
+/* User Management Section */
+.user-management {
+  background: var(--card-background);
+  padding: 2rem;
+  border-radius: 8px;
   box-shadow: 0 2px 4px var(--shadow-color);
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.nav-link {
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* Search Container */
+.search-container {
+  margin-bottom: 2rem;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: var(--input-background);
   color: var(--text-color);
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px 16px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.nav-link:hover {
-  background-color: var(--primary-color);
-  color: var(--button-text);
+.search-input:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 2px rgba(215, 30, 43, 0.1);
 }
 
-.nav-link.active {
-  background-color: var(--primary-color);
-  color: var(--button-text);
+/* Utility Classes */
+.text-center {
+  text-align: center;
 }
 
-.main-content {
-  min-height: calc(100vh - 140px);
-  padding: 20px;
-  background-color: var(--background-color);
-  transition: background-color 0.3s ease;
-}
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
 
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .nav-menu {
-    flex-wrap: wrap;
-    padding: 10px;
-    gap: 10px;
+  .container {
+    padding: 0 1rem;
+    margin: 1rem auto;
   }
   
-  .nav-link {
-    flex: 1;
-    text-align: center;
-    min-width: 100px;
+  .user-management {
+    padding: 1rem;
   }
   
-  .main-content {
-    padding: 10px;
+  .section-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
   }
+  
+  .search-input {
+    max-width: 100%;
+  }
+}
+
+/* Loading and Error States */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--secondary-text-color);
+}
+
+.error {
+  background-color: var(--card-background);
+  border: 1px solid var(--error-color);
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+.error h3 {
+  color: var(--error-color);
+  margin-bottom: 1rem;
+}
+
+.error p {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+/* Links */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Forms */
+input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Buttons - Global Styles */
+button {
+  font-family: inherit;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
 }
